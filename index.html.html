@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Palak Garments - Fashion for Everyone. Shop Girls, Boys, Women and Men clothing.">
+  <title>Palak Garments | Fashion for Everyone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#12202b;--muted:#6c7680;--cream:#f8f1eb;--soft:#fff8f3;--line:#e8e2dd;--green:#18a957;--pink:#f3d5d5;--shadow:0 10px 35px rgba(18,32,43,.08)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:#fff}
+    a{text-decoration:none;color:inherit} button,input,select{font:inherit} button{cursor:pointer;border:0}
+    .top{background:var(--ink);color:#fff;padding:9px 5%;font-size:12px;display:flex;justify-content:space-between;gap:20px}
+    .nav{height:78px;display:flex;align-items:center;gap:28px;padding:0 5%;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);z-index:20}
+    .logo{font-family:"Playfair Display";font-size:31px;letter-spacing:2px;line-height:.8;margin-right:auto}.logo small{display:block;font:700 9px "DM Sans";letter-spacing:5px;text-align:center;margin-top:9px}
+    .links{display:flex;gap:22px;font-size:14px;font-weight:600}.links a:hover{color:#b05c65}
+    .nav-tools{display:flex;align-items:center;gap:12px}.search{border:1px solid var(--line);border-radius:25px;padding:10px 14px;width:190px}.icon-btn{background:transparent;font-size:20px;position:relative}.badge{position:absolute;right:-5px;top:-6px;background:#d9485f;color:#fff;border-radius:50%;font-size:10px;padding:3px 6px}
+    .hero{min-height:480px;background:linear-gradient(90deg,#f9e7dc 0%,#f7eee9 50%,#ead5cc 100%);display:flex;align-items:center;padding:60px 7%;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-90px;top:-100px;width:500px;height:500px;border-radius:50%;background:rgba(255,255,255,.28)}
+    .hero-copy{max-width:610px;z-index:1}.eyebrow{letter-spacing:3px;font-size:12px;font-weight:700}.hero h1{font:700 clamp(45px,6vw,78px)/.95 "Playfair Display";margin:15px 0}.hero p{font-size:17px;color:#49515a}.hero-actions{display:flex;gap:12px;margin-top:25px}.btn{padding:13px 22px;border-radius:7px;font-weight:700;display:inline-flex;justify-content:center;align-items:center;gap:8px}.primary{background:var(--ink);color:#fff}.secondary{background:#fff;border:1px solid var(--line)}
+    .hero-art{position:absolute;right:7%;bottom:-25px;font-size:160px;filter:drop-shadow(0 20px 20px rgba(0,0,0,.08))}
+    .section{padding:55px 5%}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.section h2{font:700 36px "Playfair Display";margin:0}.muted{color:var(--muted)}
+    .cats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.cat{border-radius:14px;overflow:hidden;background:var(--soft);padding:0 0 18px;text-align:center;border:1px solid #f0e9e4;transition:.2s}.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.cat-img{height:150px;display:grid;place-items:center;font-size:65px;background:linear-gradient(135deg,#ffe1e5,#f6e9e1)}.cat:nth-child(2) .cat-img{background:linear-gradient(135deg,#dceeff,#e9f4ff)}.cat:nth-child(3) .cat-img{background:linear-gradient(135deg,#e8f2d7,#f6f0d8)}.cat:nth-child(4) .cat-img{background:linear-gradient(135deg,#e1e7eb,#f0f2f4)}.cat:nth-child(5) .cat-img{background:linear-gradient(135deg,#f3e6d4,#f8eee2)}.cat:nth-child(6) .cat-img{background:linear-gradient(135deg,#ffd8d8,#fff0f0)}.cat strong{display:block;margin-top:14px}.cat span{font-size:12px;color:var(--muted)}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.chip{padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:22px;font-size:13px}.chip.active,.chip:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:.2s;position:relative}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.pimg{height:260px;display:grid;place-items:center;font-size:90px;background:linear-gradient(135deg,#f6eee8,#fffaf7);position:relative}.tag{position:absolute;left:10px;top:10px;background:#fff;border-radius:15px;padding:5px 9px;font-size:10px;font-weight:800}.sale{background:#e95762;color:#fff}.pbody{padding:15px}.pbody h3{font-size:15px;margin:0 0 7px}.price{font-weight:800}.old{text-decoration:line-through;color:#9ba1a6;font-size:12px;margin-left:7px}.stars{color:#d79b2d;font-size:12px;margin-top:8px}.swatches{display:flex;gap:6px;margin:9px 0}.sw{width:15px;height:15px;border-radius:50%;border:1px solid #aaa}.add{width:100%;margin-top:8px;background:var(--ink);color:#fff;border-radius:6px;padding:10px;font-size:13px}.wa{width:100%;margin-top:7px;background:var(--green);color:#fff;border-radius:6px;padding:9px;font-size:12px;font-weight:700}
+    .benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 5% 50px}.benefit{padding:22px;background:#faf9f8;border-radius:12px;text-align:center}.benefit b{display:block;margin:7px 0 4px}.benefit span{font-size:12px;color:var(--muted)}
+    footer{background:var(--ink);color:#fff;padding:45px 5% 20px}.footgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}.flogo{font:700 34px "Playfair Display";letter-spacing:3px}.footgrid h4{margin-top:0}.footgrid a,.footgrid p{display:block;color:#c8d0d5;font-size:13px;margin:9px 0}.copyright{border-top:1px solid #34424d;margin-top:30px;padding-top:15px;color:#aeb9c0;font-size:12px}
+    .view{display:none}.view.active{display:block}
+    .page-title{padding:55px 5%;background:var(--cream)}.page-title h1{font:700 52px "Playfair Display";margin:0 0 8px}.toolbar{display:flex;justify-content:space-between;gap:15px;margin:28px 0}.select{border:1px solid var(--line);padding:10px 13px;border-radius:7px;background:#fff}
+    .product-page{display:grid;grid-template-columns:1.1fr 1fr;gap:45px;padding:55px 7%}.detail-img{min-height:560px;border-radius:16px;background:linear-gradient(135deg,#f6e8e0,#fff8f4);display:grid;place-items:center;font-size:190px}.detail h1{font:700 44px "Playfair Display";margin:0 0 12px}.detail-price{font-size:24px;font-weight:800;margin:15px 0}.option{margin:22px 0}.option label{font-weight:700;font-size:13px;display:block;margin-bottom:10px}.sizes{display:flex;gap:8px;flex-wrap:wrap}.size{padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:6px}.size.selected{background:var(--ink);color:#fff}.qty{display:flex;align-items:center;border:1px solid var(--line);width:max-content;border-radius:7px;overflow:hidden}.qty button{width:36px;height:38px;background:#fff}.qty span{padding:0 14px}.detail .add{font-size:15px;padding:13px;margin-top:20px}
+    .cart-wrap{padding:50px 7%;display:grid;grid-template-columns:1.5fr .7fr;gap:30px}.cart-item{display:grid;grid-template-columns:100px 1fr auto;gap:15px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}.mini{width:100px;height:100px;border-radius:10px;background:#f7eee8;display:grid;place-items:center;font-size:45px}.remove{color:#d34c5b;background:none}.summary{border:1px solid var(--line);border-radius:12px;padding:22px;height:max-content}.row{display:flex;justify-content:space-between;margin:13px 0}.total{border-top:1px solid var(--line);padding-top:15px;font-size:19px;font-weight:800}.full{width:100%;margin-top:12px}
+    .checkout{padding:50px 7%;display:grid;grid-template-columns:1.2fr .8fr;gap:30px}.formbox,.orderbox{border:1px solid var(--line);border-radius:12px;padding:25px}.formbox h2,.orderbox h2{font:700 28px "Playfair Display";margin-top:0}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:14px}.field.fullw{grid-column:1/-1}.field label{font-size:12px;font-weight:700;display:block;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:7px;outline:none}.field textarea{min-height:85px;resize:vertical}.radio{border:1px solid var(--line);padding:12px;border-radius:7px;margin-bottom:9px}.success{padding:50px;text-align:center}.success .check{font-size:60px}.empty{text-align:center;padding:70px 20px;color:var(--muted)}
+    .toast{position:fixed;right:20px;bottom:20px;background:var(--ink);color:#fff;padding:13px 18px;border-radius:8px;transform:translateY(100px);opacity:0;transition:.25s;z-index:99}.toast.show{transform:none;opacity:1}
+    @media(max-width:1000px){.links{display:none}.cats{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:repeat(2,1fr)}.footgrid{grid-template-columns:1fr 1fr}.hero-art{opacity:.35}.product-page,.cart-wrap,.checkout{grid-template-columns:1fr}}
+    @media(max-width:600px){.top{font-size:10px}.nav{padding:0 4%;height:65px}.logo{font-size:25px}.search{display:none}.hero{padding:45px 6%;min-height:470px}.hero h1{font-size:48px}.hero-art{right:-40px;font-size:120px}.section{padding:40px 4%}.cats{grid-template-columns:repeat(2,1fr)}.cat-img{height:115px}.products{grid-template-columns:1fr 1fr;gap:10px}.pimg{height:190px;font-size:65px}.pbody{padding:11px}.benefits{grid-template-columns:1fr 1fr;margin:0 4% 35px}.footgrid{grid-template-columns:1fr}.page-title h1{font-size:40px}.product-page{padding:35px 4%}.detail-img{min-height:360px;font-size:130px}.checkout,.cart-wrap{padding:35px 4%}.formgrid{grid-template-columns:1fr}.field.fullw{grid-column:auto}}
+  </style>
+</head>
+<body>
+<div class="top"><span>🚚 Free Delivery on Orders Above Rs. 3,000</span><span>✓ Best Quality &nbsp; | &nbsp; Latest Fashion &nbsp; | &nbsp; Trusted Store</span></div>
+<nav class="nav">
+  <a class="logo" href="#home">PALAK<small>GARMENTS</small></a>
+  <div class="links"><a href="#home">Home</a><a href="#shop">Shop</a><a href="#category/girls">Girls</a><a href="#category/boys">Boys</a><a href="#category/women">Women</a><a href="#category/men">Men</a><a href="#shop?filter=new">New Arrivals</a><a href="#shop?filter=sale">Sale</a></div>
+  <div class="nav-tools"><input id="search" class="search" placeholder="Search products..." oninput="searchProducts(this.value)"><button class="icon-btn" onclick="go('cart')" aria-label="Cart">🛒<span id="cartBadge" class="badge">0</span></button></div>
+</nav>
+
+<main>
+<section id="home" class="view active">
+  <div class="hero"><div class="hero-copy"><div class="eyebrow">WELCOME TO PALAK GARMENTS</div><h1>Fashion for Everyone</h1><p>Trendy Styles &nbsp; | &nbsp; Premium Quality &nbsp; | &nbsp; Best Prices</p><div class="hero-actions"><button class="btn primary" onclick="go('shop')">Shop Now →</button><button class="btn secondary" onclick="go('category/girls')">Explore Collections</button></div></div><div class="hero-art">👗 🧥</div></div>
+  <div class="section"><div class="section-head"><div><div class="eyebrow">SHOP BY STYLE</div><h2>Our Collections</h2></div></div>
+    <div class="cats">
+      <a class="cat" href="#category/girls"><div class="cat-img">👗</div><strong>Girls</strong><span>View Collection →</span></a>
+      <a class="cat" href="#category/boys"><div class="cat-img">🧒</div><strong>Boys</strong><span>View Collection →</span></a>
+      <a class="cat" href="#category/women"><div class="cat-img">👚</div><strong>Women</strong><span>View Collection →</span></a>
+      <a class="cat" href="#category/men"><div class="cat-img">👔</div><strong>Men</strong><span>View Collection →</span></a>
+      <a class="cat" href="#shop?filter=new"><div class="cat-img">✨</div><strong>New Arrivals</strong><span>View Collection →</span></a>
+      <a class="cat" href="#shop?filter=sale"><div class="cat-img">🏷️</div><strong>Sale</strong><span>View Deals →</span></a>
+    </div>
+  </div>
+  <div class="section" style="padding-top:0"><div class="section-head"><div><div class="eyebrow">HANDPICKED FOR YOU</div><h2>Featured Products</h2></div><a href="#shop" class="muted">View All →</a></div><div id="homeProducts" class="products"></div></div>
+  <div class="benefits"><div class="benefit">🚚<b>Free Delivery</b><span>On orders above Rs. 3,000</span></div><div class="benefit">🛡️<b>Secure Payments</b><span>Cash on Delivery / Online</span></div><div class="benefit">↩️<b>Easy Exchange</b><span>7 days return policy</span></div><div class="benefit">🎧<b>Customer Support</b><span>We're here to help</span></div></div>
+</section>
+
+<section id="shop" class="view">
+  <div class="page-title"><div class="eyebrow">PALAK GARMENTS</div><h1>Shop All Products</h1><p class="muted">Find your next favourite style.</p></div>
+  <div class="section"><div class="filters"><button class="chip active" onclick="setFilter('all',this)">All</button><button class="chip" onclick="setFilter('girls',this)">Girls</button><button class="chip" onclick="setFilter('boys',this)">Boys</button><button class="chip" onclick="setFilter('women',this)">Women</button><button class="chip" onclick="setFilter('men',this)">Men</button><button class="chip" onclick="setFilter('new',this)">New Arrivals</button><button class="chip" onclick="setFilter('sale',this)">Sale</button></div><div class="toolbar"><span id="resultCount" class="muted"></span><select id="sort" class="select" onchange="renderShop()"><option value="featured">Sort: Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option></select></div><div id="shopProducts" class="products"></div></div>
+</section>
+
+<section id="product" class="view"><div id="productDetail"></div></section>
+
+<section id="cart" class="view">
+  <div class="page-title"><div class="eyebrow">YOUR BAG</div><h1>Shopping Cart</h1></div><div id="cartArea"></div>
+</section>
+
+<section id="checkout" class="view">
+  <div class="page-title"><div class="eyebrow">PALAK GARMENTS</div><h1>Checkout</h1></div><div id="checkoutArea"></div>
+</section>
+</main>
+
+<footer><div class="footgrid"><div><div class="flogo">PALAK</div><p>GARMENTS</p><p>Style for Everyone ♡</p></div><div><h4>Quick Links</h4><a href="#home">Home</a><a href="#shop">Shop</a><a href="#shop?filter=new">New Arrivals</a><a href="#shop?filter=sale">Sale</a></div><div><h4>Categories</h4><a href="#category/girls">Girls</a><a href="#category/boys">Boys</a><a href="#category/women">Women</a><a href="#category/men">Men</a></div><div><h4>Contact</h4><p>📞 +92 300 1234567</p><p>✉️ palakgarments@gmail.com</p><p>📍 Karachi, Pakistan</p></div></div><div class="copyright">© 2026 Palak Garments. All Rights Reserved.</div></footer>
+<div id="toast" class="toast"></div>
+
+<script>
+const products=[
+{id:1,name:"Girls Party Frock",cat:"girls",price:2499,old:3499,emoji:"👗",new:true,sale:true,sizes:["2Y","3Y","4Y","5Y","6Y","7Y"],colors:["#f29bb0","#fff","#a7c5eb"]},
+{id:2,name:"Boys Hoodie Set",cat:"boys",price:1999,old:2799,emoji:"🧥",new:true,sizes:["2Y","3Y","4Y","5Y","6Y","7Y"],colors:["#4f8fd9","#222","#d7d7d7"]},
+{id:3,name:"Women's Lawn Suit",cat:"women",price:2999,old:4299,emoji:"👚",new:true,sizes:["S","M","L","XL","XXL"],colors:["#5b9c62","#dca6aa","#e6c99b"]},
+{id:4,name:"Men's Kurta",cat:"men",price:1799,old:2499,emoji:"👔",new:true,sizes:["S","M","L","XL","XXL"],colors:["#1f3445","#fff","#b79f83"]},
+{id:5,name:"Boys Jeans & T-Shirt",cat:"boys",price:1499,old:2199,emoji:"👕",sizes:["2Y","3Y","4Y","5Y","6Y","7Y"],colors:["#3e76aa","#222"]},
+{id:6,name:"Women's Long Dress",cat:"women",price:2199,old:3299,emoji:"👗",sale:true,sizes:["S","M","L","XL","XXL"],colors:["#222","#fff","#d69b9b"]},
+{id:7,name:"Girls Embroidered Suit",cat:"girls",price:1899,old:2499,emoji:"🩷",new:true,sizes:["3Y","4Y","5Y","6Y","7Y"],colors:["#ef9da8","#c9b1e9"]},
+{id:8,name:"Men's Casual Shirt",cat:"men",price:1599,old:2199,emoji:"👕",sale:true,sizes:["S","M","L","XL"],colors:["#87a8c2","#e4c39e","#222"]},
+{id:9,name:"Women's 2-Piece Set",cat:"women",price:2699,old:3799,emoji:"🥻",new:true,sizes:["S","M","L","XL"],colors:["#8eb29a","#d6a2a8"]},
+{id:10,name:"Boys Cotton Kurta",cat:"boys",price:1399,old:1899,emoji:"🥋",sizes:["2Y","3Y","4Y","5Y","6Y"],colors:["#fff","#b9d0bd"]},
+{id:11,name:"Girls Casual Co-ord",cat:"girls",price:1699,old:2299,emoji:"👚",sale:true,sizes:["4Y","5Y","6Y","7Y"],colors:["#f2c0c8","#b8d7e9"]},
+{id:12,name:"Men's Premium Shalwar Kameez",cat:"men",price:3299,old:4499,emoji:"🧥",new:true,sizes:["M","L","XL","XXL"],colors:["#d9d0bb","#294153"]}
+];
+let cart=JSON.parse(localStorage.getItem("palakCart")||"[]"), filter="all", search="";
+function money(n){return "Rs. "+n.toLocaleString("en-PK")}
+function save(){localStorage.setItem("palakCart",JSON.stringify(cart));document.getElementById("cartBadge").textContent=cart.reduce((a,b)=>a+b.qty,0)}
+function go(route){location.hash=route}
+function productCard(p){
+ return `<article class="card"><div class="pimg">${p.new?'<span class="tag">NEW</span>':''}${p.sale?'<span class="tag sale" style="left:auto;right:10px">SALE</span>':''}${p.emoji}</div><div class="pbody"><h3><a href="#product/${p.id}">${p.name}</a></h3><div><span class="price">${money(p.price)}</span><span class="old">${money(p.old)}</span></div><div class="stars">★★★★★ <span class="muted">(12)</span></div><div class="swatches">${p.colors.map(c=>`<i class="sw" style="background:${c}"></i>`).join("")}</div><button class="add" onclick="addToCart(${p.id})">🛒 Add to Cart</button><button class="wa" onclick="waProduct(${p.id})">◉ WhatsApp Order</button></div></article>`
+}
+function renderHome(){document.getElementById("homeProducts").innerHTML=products.slice(0,6).map(productCard).join("")}
+function filtered(){
+ let arr=products.filter(p=>filter==="all"||filter===p.cat||(filter==="new"&&p.new)||(filter==="sale"&&p.sale));
+ if(search) arr=arr.filter(p=>(p.name+" "+p.cat).toLowerCase().includes(search.toLowerCase()));
+ const sort=document.getElementById("sort"); if(sort?.value==="low")arr.sort((a,b)=>a.price-b.price); if(sort?.value==="high")arr.sort((a,b)=>b.price-a.price); return arr
+}
+function renderShop(){let arr=filtered();document.getElementById("resultCount").textContent=arr.length+" products";document.getElementById("shopProducts").innerHTML=arr.length?arr.map(productCard).join(""):`<div class="empty">No products found. Try another search.</div>`}
+function setFilter(f,el){filter=f;document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));el?.classList.add("active");renderShop()}
+function searchProducts(v){search=v;go("shop");setTimeout(renderShop,0)}
+function addToCart(id,size=null){let p=products.find(x=>x.id===id), item=cart.find(x=>x.id===id&&x.size===size);if(item)item.qty++;else cart.push({id,qty:1,size:size||p.sizes[0]});save();toast(p.name+" added to cart");}
+function removeItem(i){cart.splice(i,1);save();renderCart()}
+function updateQty(i,d){cart[i].qty=Math.max(1,cart[i].qty+d);save();renderCart()}
+function totals(){let subtotal=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);let delivery=subtotal>=3000||subtotal===0?0:250;return {subtotal,delivery,total:subtotal+delivery}}
+function renderCart(){let area=document.getElementById("cartArea");if(!cart.length){area.innerHTML=`<div class="empty"><div style="font-size:55px">🛒</div><h2>Your cart is empty</h2><p>Explore our latest styles and add something you love.</p><button class="btn primary" onclick="go('shop')">Start Shopping</button></div>`;return}
+ const t=totals();area.innerHTML=`<div class="cart-wrap"><div>${cart.map((x,i)=>{let p=products.find(p=>p.id===x.id);return `<div class="cart-item"><div class="mini">${p.emoji}</div><div><h3>${p.name}</h3><div class="muted">Size: ${x.size}</div><div class="price">${money(p.price)}</div></div><div><div class="qty"><button onclick="updateQty(${i},-1)">−</button><span>${x.qty}</span><button onclick="updateQty(${i},1)">+</button></div><button class="remove" onclick="removeItem(${i})">Remove</button></div></div>`}).join("")}</div><aside class="summary"><h2>Order Summary</h2><div class="row"><span>Subtotal</span><b>${money(t.subtotal)}</b></div><div class="row"><span>Delivery</span><b>${t.delivery?money(t.delivery):"FREE"}</b></div><div class="total row"><span>Total</span><span>${money(t.total)}</span></div><button class="btn primary full" onclick="go('checkout')">Proceed to Checkout →</button><button class="btn secondary full" onclick="go('shop')">Continue Shopping</button></aside></div>`
+}
+function renderProduct(id){let p=products.find(x=>x.id===+id)||products[0];document.getElementById("productDetail").innerHTML=`<div class="product-page"><div class="detail-img">${p.emoji}</div><div class="detail"><div class="eyebrow">${p.cat.toUpperCase()}</div><h1>${p.name}</h1><div class="stars">★★★★★ (12 customer reviews)</div><div class="detail-price">${money(p.price)} <span class="old">${money(p.old)}</span></div><p class="muted">Premium quality fabric with a comfortable fit and stylish finish. Product availability and colours may vary.</p><div class="option"><label>SELECT SIZE</label><div class="sizes" id="sizes">${p.sizes.map((s,i)=>`<button class="size ${i===0?'selected':''}" onclick="selectSize(this)">${s}</button>`).join("")}</div></div><div class="option"><label>COLOUR</label><div class="swatches">${p.colors.map(c=>`<i class="sw" style="background:${c};width:25px;height:25px"></i>`).join("")}</div></div><div class="option"><label>QUANTITY</label><div class="qty"><button onclick="changeDetailQty(-1)">−</button><span id="dqty">1</span><button onclick="changeDetailQty(1)">+</button></div></div><button class="add" onclick="detailAdd(${p.id})">🛒 Add to Cart</button><button class="wa" onclick="waProduct(${p.id})">◉ Order on WhatsApp</button><p class="muted" style="font-size:12px;margin-top:18px">🚚 Free delivery over Rs. 3,000 &nbsp; • &nbsp; ↩️ 7-day exchange policy</p></div></div>`}
+function selectSize(el){document.querySelectorAll(".size").forEach(x=>x.classList.remove("selected"));el.classList.add("selected")}
+function changeDetailQty(d){let e=document.getElementById("dqty");e.textContent=Math.max(1,+e.textContent+d)}
+function detailAdd(id){let size=document.querySelector(".size.selected")?.textContent, qty=+document.getElementById("dqty").textContent;for(let i=0;i<qty;i++)addToCart(id,size);go("cart")}
+function renderCheckout(){let area=document.getElementById("checkoutArea");if(!cart.length){area.innerHTML=`<div class="empty">Your cart is empty. <button class="btn primary" onclick="go('shop')">Shop Now</button></div>`;return}let t=totals();area.innerHTML=`<div class="checkout"><div class="formbox"><h2>Delivery Details</h2><div class="formgrid"><div class="field"><label>FIRST NAME *</label><input id="fname" required></div><div class="field"><label>LAST NAME</label><input id="lname"></div><div class="field fullw"><label>PHONE *</label><input id="phone" placeholder="+92 3XX XXXXXXX"></div><div class="field fullw"><label>EMAIL</label><input id="email" type="email"></div><div class="field fullw"><label>ADDRESS *</label><textarea id="address" placeholder="House / Shop no, street, area"></textarea></div><div class="field"><label>CITY *</label><input id="city" placeholder="Karachi"></div><div class="field"><label>POSTAL CODE</label><input id="postal"></div><div class="field fullw"><label>PAYMENT METHOD</label><div class="radio"><input type="radio" name="pay" checked> Cash on Delivery</div><div class="radio"><input type="radio" name="pay"> Bank / Online Transfer</div></div></div><button class="btn primary full" onclick="placeOrder()">Place Order — ${money(t.total)}</button></div><aside class="orderbox"><h2>Your Order</h2>${cart.map(x=>{let p=products.find(p=>p.id===x.id);return `<div class="row"><span>${p.name} × ${x.qty}</span><b>${money(p.price*x.qty)}</b></div>`}).join("")}<div class="row"><span>Delivery</span><b>${t.delivery?money(t.delivery):"FREE"}</b></div><div class="total row"><span>Total</span><span>${money(t.total)}</span></div></aside></div>`}
+function placeOrder(){if(!document.getElementById("fname").value||!document.getElementById("phone").value||!document.getElementById("address").value||!document.getElementById("city").value){toast("Please fill all required fields");return}let order="PG"+Date.now().toString().slice(-7);cart=[];save();document.getElementById("checkoutArea").innerHTML=`<div class="success"><div class="check">✓</div><h2>Order Placed!</h2><p>Thank you for shopping with Palak Garments.</p><p><b>Order #${order}</b></p><p class="muted">This demo frontend stores no payment. Connect your backend/payment gateway before going live.</p><button class="btn primary" onclick="go('shop')">Continue Shopping</button></div>`}
+function waProduct(id){let p=products.find(x=>x.id===id);let msg=encodeURIComponent(`Assalam o Alaikum, I want to order from Palak Garments:\n${p.name}\nPrice: ${money(p.price)}\nPlease share availability and delivery details.`);window.open("https://wa.me/923001234567?text="+msg,"_blank")}
+function toast(t){let e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1800)}
+function route(){let h=location.hash.slice(1)||"home";document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));if(h.startsWith("product/")){document.getElementById("product").classList.add("active");renderProduct(h.split("/")[1])}else if(h==="shop"||h.startsWith("shop?")){document.getElementById("shop").classList.add("active");let q=h.split("?")[1];filter=q?.split("=")[1]||"all";renderShop()}else if(h==="cart"){document.getElementById("cart").classList.add("active");renderCart()}else if(h==="checkout"){document.getElementById("checkout").classList.add("active");renderCheckout()}else if(h.startsWith("category/")){document.getElementById("shop").classList.add("active");filter=h.split("/")[1];renderShop()}else document.getElementById("home").classList.add("active");window.scrollTo(0,0)}
+window.addEventListener("hashchange",route);save();renderHome();route();
+</script>
+</body>
+</html>
