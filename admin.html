@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Palak Garments — Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f7f4f1;color:#12202b}
+.wrap{max-width:1100px;margin:auto;padding:30px 18px}
+.box{background:#fff;border:1px solid #e5ded8;border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 5px 20px #0000000d}
+h1,h2{margin-top:0}
+input,select,textarea{width:100%;padding:11px;box-sizing:border-box;border:1px solid #ddd;border-radius:8px;margin:6px 0 12px}
+button{border:0;border-radius:8px;padding:11px 16px;cursor:pointer;background:#12202b;color:#fff;font-weight:700}
+.danger{background:#c83d4d}.muted{color:#68727b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;padding:12px 0}
+.row img{width:65px;height:65px;object-fit:cover;border-radius:8px;background:#f3eee9}
+.hidden{display:none}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.tabs button{background:#eee;color:#12202b}.tabs button.active{background:#12202b;color:#fff}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="setup" class="box">
+<h1>PALAK GARMENTS ADMIN</h1>
+<p class="muted">One-time connection setup. Use only your Supabase publishable key here. Never use the secret/service-role key.</p>
+<label>Supabase Project URL</label>
+<input id="url" value="https://jigwdmxiniwrtueelso.supabase.co">
+<label>Supabase Publishable Key</label>
+<input id="key" placeholder="sb_publishable_...">
+<button onclick="saveConfig()">Save Connection</button>
+<p id="setupMsg"></p>
+</div>
+
+<div id="login" class="box hidden">
+<h2>Admin Login</h2>
+<input id="email" type="email" placeholder="Admin email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p id="loginMsg"></p>
+</div>
+
+<div id="app" class="hidden">
+<div class="box">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+<h1>Palak Garments Dashboard</h1><button onclick="logout()">Logout</button>
+</div>
+<div class="tabs">
+<button class="active" onclick="showTab('products')">Products</button>
+<button onclick="showTab('settings')">Contact / Store</button>
+<button onclick="showTab('orders')">Orders</button>
+</div>
+</div>
+
+<section id="productsTab" class="box">
+<h2>Products</h2>
+<div class="grid">
+<div>
+<label>Product name</label><input id="pname">
+<label>Category</label><select id="pcat"><option>girls</option><option>boys</option><option>women</option><option>men</option></select>
+<label>Price</label><input id="pprice" type="number">
+<label>Old price</label><input id="pold" type="number">
+<label>Stock</label><input id="pstock" type="number">
+<label>Description</label><textarea id="pdesc"></textarea>
+</div>
+<div>
+<label>Product image</label><input id="pfile" type="file" accept="image/*">
+<label>Or image URL</label><input id="pimage">
+<label><input id="pnew" type="checkbox" style="width:auto"> New arrival</label><br>
+<label><input id="psale" type="checkbox" style="width:auto"> Sale</label><br>
+<button onclick="addProduct()">Add Product</button>
+<p id="productMsg"></p>
+</div>
+</div>
+<div id="productList"></div>
+</section>
+
+<section id="settingsTab" class="box hidden">
+<h2>Store Contact</h2>
+<label>Store name</label><input id="sname">
+<label>Phone</label><input id="sphone">
+<label>WhatsApp</label><input id="swa">
+<label>Email</label><input id="semail">
+<label>Address</label><input id="saddress">
+<button onclick="saveSettings()">Save Settings</button>
+<p id="settingsMsg"></p>
+</section>
+
+<section id="ordersTab" class="box hidden">
+<h2>Orders</h2><div id="orderList">Loading...</div>
+</section>
+</div>
+</div>
+
+<script>
+let sb=null,config=JSON.parse(localStorage.getItem('palakSupabaseConfig')||'null');
+function $(id){return document.getElementById(id)}
+function saveConfig(){
+ const url=$('url').value.trim(),key=$('key').value.trim();
+ if(!url||!key){$('setupMsg').textContent='URL and publishable key required';return}
+ localStorage.setItem('palakSupabaseConfig',JSON.stringify({url,key}));location.reload()
+}
+function init(){
+ if(!config){$('setup').classList.remove('hidden');return}
+ $('setup').classList.add('hidden');sb=supabase.createClient(config.url,config.key);checkSession()
+}
+async function checkSession(){
+ const {data}=await sb.auth.getSession();
+ if(data.session){showApp()}else $('login').classList.remove('hidden')
+}
+async function login(){
+ const {error}=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});
+ if(error){$('loginMsg').textContent=error.message;return}showApp()
+}
+async function logout(){await sb.auth.signOut();location.reload()}
+async function showApp(){
+ $('login').classList.add('hidden');$('app').classList.remove('hidden');
+ await loadProducts();await loadSettings();await loadOrders()
+}
+function showTab(t){
+ ['products','settings','orders'].forEach(x=>$(x+'Tab').classList.toggle('hidden',x!==t));
+ document.querySelectorAll('.tabs button').forEach((b,i)=>b.classList.toggle('active',['products','settings','orders'][i]===t))
+}
+async function loadProducts(){
+ const {data,error}=await sb.from('products').select('*').order('created_at',{ascending:false});
+ if(error){$('productMsg').textContent=error.message;return}
+ $('productList').innerHTML=data.map(p=>`<div class="row"><div style="display:flex;gap:12px;align-items:center"><img src="${p.image_url||''}"><div><b>${esc(p.name)}</b><div class="muted">${p.category} · Rs. ${p.price} · Stock ${p.stock}</div></div></div><button class="danger" onclick="delProduct(${p.id})">Delete</button></div>`).join('')||'<p class="muted">No products yet.</p>'
+}
+async function addProduct(){
+ let image=$('pimage').value.trim(),file=$('pfile').files[0];
+ if(file){
+  const path=Date.now()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+  const up=await sb.storage.from('product-images').upload(path,file,{upsert:true});
+  if(up.error){$('productMsg').textContent=up.error.message;return}
+  image=sb.storage.from('product-images').getPublicUrl(path).data.publicUrl
+ }
+ const row={name:$('pname').value.trim(),category:$('pcat').value,price:+$('pprice').value||0,old_price:+$('pold').value||null,image_url:image||null,description:$('pdesc').value,stock:+$('pstock').value||0,is_new:$('pnew').checked,is_sale:$('psale').checked};
+ if(!row.name){$('productMsg').textContent='Product name required';return}
+ const {error}=await sb.from('products').insert(row);
+ $('productMsg').textContent=error?error.message:'Product added ✓';
+ if(!error){
+  ['pname','pprice','pold','pstock','pdesc','pimage'].forEach(id=>$(id).value='');
+  $('pfile').value='';$('pnew').checked=false;$('psale').checked=false;loadProducts()
+ }
+}
+async function delProduct(id){
+ if(!confirm('Delete this product?'))return;
+ const {error}=await sb.from('products').delete().eq('id',id);
+ $('productMsg').textContent=error?error.message:'Deleted ✓';loadProducts()
+}
+async function loadSettings(){
+ const {data}=await sb.from('settings').select('*').eq('id',1).maybeSingle();
+ if(data){
+  $('sname').value=data.store_name||'';$('sphone').value=data.phone||'';
+  $('swa').value=data.whatsapp||'';$('semail').value=data.email||'';
+  $('saddress').value=data.address||''
+ }
+}
+async function saveSettings(){
+ const row={id:1,store_name:$('sname').value,phone:$('sphone').value,whatsapp:$('swa').value,email:$('semail').value,address:$('saddress').value,updated_at:new Date().toISOString()};
+ const {error}=await sb.from('settings').upsert(row);
+ $('settingsMsg').textContent=error?'Error: '+error.message:'Settings saved ✓'
+}
+async function loadOrders(){
+ const {data,error}=await sb.from('orders').select('*').order('created_at',{ascending:false});
+ if(error){$('orderList').textContent=error.message;return}
+ $('orderList').innerHTML=data.map(o=>`<div class="row"><div><b>#${o.id} · ${esc(o.customer_name)}</b><div class="muted">${esc(o.phone)} · ${esc(o.address||'')}</div></div><div><b>Rs. ${o.total}</b><br><select onchange="status(${o.id},this.value)"><option ${o.status==='Pending'?'selected':''}>Pending</option><option ${o.status==='Confirmed'?'selected':''}>Confirmed</option><option ${o.status==='Shipped'?'selected':''}>Shipped</option><option ${o.status==='Delivered'?'selected':''}>Delivered</option><option ${o.status==='Cancelled'?'selected':''}>Cancelled</option></select></div></div>`).join('')||'<p class="muted">No orders yet.</p>'
+}
+async function status(id,v){await sb.from('orders').update({status:v}).eq('id',id);loadOrders()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+init();
+</script>
+</body>
+</html>
